@@ -1,6 +1,8 @@
 package com.example.opencvwrapper
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -9,34 +11,38 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.EditText
+import android.widget.TextView
+import androidx.core.widget.addTextChangedListener
 import com.example.opencvwrapper.databinding.ActivityMainBinding
 import com.dimabolsunov.opencvwrapperlib.NativeLib
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var appBarConfiguration: AppBarConfiguration
-    private lateinit var binding: ActivityMainBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
 
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        var inputArrView = findViewById<EditText>(R.id.array_input)
+        var inputMpView = findViewById<EditText>(R.id.multiplier_input)
+        var outputView = findViewById<TextView>(R.id.array_output)
 
-        setSupportActionBar(binding.toolbar)
+        var watcher  = object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+            override fun afterTextChanged(s: Editable?) {
+                val arr : DoubleArray = inputArrView.text.split(' ').map { t : String -> t.toDoubleOrNull() ?: 0.0 }.toDoubleArray()
+                val mp = inputMpView.text.trim().toString().toDoubleOrNull() ?: 1.0
+                val lib = NativeLib()
+                val res = lib.multiplyWithOpenCV(arr, mp)
+                outputView.text = "result (received at: ${lib.getCurrentTime()}):  ${res.joinToString()}"
 
-        val navController = findNavController(R.id.nav_host_fragment_content_main)
-        appBarConfiguration = AppBarConfiguration(navController.graph)
-        setupActionBarWithNavController(navController, appBarConfiguration)
+            }
 
-        val lib = NativeLib()
-        var arr = doubleArrayOf(1.0, 2.0, 3.0)
-        val mp : Double = 12.0
-        arr = lib.multiplyWithOpenCV(arr, mp)
-        binding.fab.setOnClickListener { view ->
-            Snackbar.make(view, arr.joinToString(), Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
         }
+        inputArrView.addTextChangedListener(watcher)
+        inputMpView.addTextChangedListener(watcher)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -53,11 +59,5 @@ class MainActivity : AppCompatActivity() {
             R.id.action_settings -> true
             else -> super.onOptionsItemSelected(item)
         }
-    }
-
-    override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment_content_main)
-        return navController.navigateUp(appBarConfiguration)
-                || super.onSupportNavigateUp()
     }
 }

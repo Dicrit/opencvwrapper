@@ -9,7 +9,7 @@ class NativeLib {
     companion object {
         // Used to load the 'opencvwrapperlib' library on application startup.
         init {
-            System.loadLibrary("opencvwrapperlib")
+            System.loadLibrary("opencvwrapperlib_jni")
         }
     }
 }

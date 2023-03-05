@@ -2,28 +2,22 @@ cmake_minimum_required(VERSION 3.22.1)
 
 project("opencvwrapperlib")
 
-add_library( # Sets the name of the library.
+option(BUILD_JNI_LIBRARY "build library for jni calls" ON)
+
+if(BUILD_JNI_LIBRARY)
+    add_subdirectory(jni_lib)
+endif()
+
+find_library(log-lib log )
+
+add_library(
         opencvwrapperlib
-
-        # Sets the library as a shared library.
         SHARED
-
-        # Provides a relative path to your source file(s).
-        opencvwrapperlib_jni.cpp
         opencvwrapperlib.cpp)
-
-find_library( # Defines the name of the path variable that stores the
-        # location of the NDK library.
-        log-lib
-
-        # Specifies the name of the NDK library that
-        # CMake needs to locate.
-        log )
 
 target_include_directories(
         opencvwrapperlib
         PUBLIC
-        #"D:\\opencv-3.4.3-android-sdk\\OpenCV-android-sdk\\sdk\\native\\jni\\include"
         "E:\\OpenCVBuild\\opencv\\modules\\core\\include"
         "E:\\OpenCVBuild\\opencv\\include"
         "E:\\OpenCVBuild\\opencv\\build"
@@ -49,11 +43,8 @@ else()
     list(APPEND EXTRA_LIBS "${OPENCV_THIRD_PARTY}libtegra_hal.a")
 endif()
 
-target_link_libraries( # Specifies the target library.
-        opencvwrapperlib
-
+target_link_libraries(opencvwrapperlib
         ${log-lib}
         "${OPENCV_BUILD_ROOT}lib\\${ANDROID_ABI}\\libopencv_core.a"
-
         ${EXTRA_LIBS}
         )

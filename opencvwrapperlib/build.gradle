@@ -6,7 +6,6 @@ plugins {
 android {
     namespace 'com.dimabolsunov.opencvwrapperlib'
     compileSdk 33
-//    ndkVersion "20.1.5948944"
 
     defaultConfig {
         minSdk 24
@@ -16,9 +15,7 @@ android {
         consumerProguardFiles "consumer-rules.pro"
         externalNativeBuild {
             cmake {
-//                abiFilters "armeabi-v7a"
                 cppFlags ""
-
             }
         }
     }

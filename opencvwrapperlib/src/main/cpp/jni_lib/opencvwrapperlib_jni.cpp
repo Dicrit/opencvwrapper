@@ -1,6 +1,6 @@
-#include "opencvwrapperlib.h"
 #include <jni.h>
 #include "jni_util.h"
+#include "opencvwrapperlib.h"
 
 extern "C" JNIEXPORT jint JNICALL
 Java_com_dimabolsunov_opencvwrapperlib_NativeLib_getCurrentTime(JNIEnv* env,

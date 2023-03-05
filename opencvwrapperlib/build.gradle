@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'com.ydq.android.gradle.native-aar.export'
 }
 
 android {
@@ -39,6 +40,10 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+}
+
+nativeBundleExport {
+    headerDir = "${project.projectDir}/src/main/cpp/opencvwrapperlib.h"
 }
 
 dependencies {

@@ -1,25 +1,20 @@
 #/bin/sh
 
-OPENCV_ROOT="../../opencv"
+OPENCV_ROOT="../opencv"
 
-rm -rf opencv
-git clone https://github.com/Itseez/opencv.git
+#rm -rf opencv
+#git clone https://github.com/Itseez/opencv.git
 
 rm -rf build
 
 mkdir build
 cd build
 
-create_lib()
-{
-rm -rf $1
-mkdir $1
-cd $1
 cmake -G Xcode \
 -DCMAKE_SYSTEM_NAME=iOS \
--DPLATFORM=OS64
--DCMAKE_OSX_DEPLOYMENT_TARGET=11.0
--DCMAKE_TOOLCHAIN_FILE=${OPENCV_ROOT}/platforms/ios/cmake/Modules/Platform/iOS.cmake
+-DPLATFORM=OS64 \
+-DCMAKE_OSX_DEPLOYMENT_TARGET=11.0 \
+-DCMAKE_TOOLCHAIN_FILE=${OPENCV_ROOT}/platforms/ios/cmake/Modules/Platform/iOS.cmake \
 -D BUILD_SHARED_LIBS=OFF \
 -D CMAKE_BUILD_TYPE=Release \
 -D BUILD_DOCS=OFF \
@@ -30,14 +25,6 @@ cmake -G Xcode \
 -D BUILD_opencv_python=OFF -D BUILD_opencv_shape=OFF -D BUILD_opencv_stitching=OFF -D BUILD_opencv_superres=OFF \
 -D BUILD_opencv_ts=OFF -D BUILD_opencv_videostab=OFF ${OPENCV_ROOT}
 
-cmake --build .
-
-cd ..
-}
-
-create_lib armeabi-v7a
-create_lib arm64-v8a
-create_lib x86
-create_lib x86_64
+#cmake --build .
 
 cd ..

@@ -20,6 +20,9 @@ The project is intended to build an iOS framework
 4. Run the build script
 
 The script will create a build directory and fill this directory with needed build variants.
+
+If you have build errors on macOS check your cmake version. For now openCV can't be build with cmake 3.24. Using cmake v3.23 instead fixes the problem.
+
 ## Build the ios framework
 1. Make the build_ios_framework.sh script executable using chmod.
 2. Run `./build_ios_framework.sh`

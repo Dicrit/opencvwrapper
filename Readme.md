@@ -16,7 +16,7 @@ The project is intended to build an iOS framework
 2. Switch to 4.x branch (this is the branch I've tested)
 3. Prepare one of the build_opencv_xxx build scriptsd depending on your OS:
     1. In case of Android build open the build script (for now available for Windows and Linux) and edit ANDROID_SDK_ROOT and ANDROID_NDK values to your SDK and NDK locations respectively
-    2. In case of iOS build most probably you'll need to make the script executable using chmod
+    2. You'll probably need to make the script executable using chmod
 4. Run the build script
 
 The script will create a build directory and fill this directory with needed build variants.

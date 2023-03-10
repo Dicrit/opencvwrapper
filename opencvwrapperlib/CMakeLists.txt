@@ -45,11 +45,11 @@ target_include_directories(
 
 if(${ANDROID})
 
-    list(APPEND EXTRA_LIBS "${OPENCV_BUILD_ROOT}lib/${ANDROID_ABI}/libopencv_core.a")
+    list(APPEND EXTRA_LIBS "${OPENCV_BUILD_ROOT}/lib/${ANDROID_ABI}/libopencv_core.a")
 
-    list(APPEND EXTRA_LIBS "${OPENCV_THIRD_PARTY}libcpufeatures.a")
-    list(APPEND EXTRA_LIBS "${OPENCV_THIRD_PARTY}libittnotify.a")
-    list(APPEND EXTRA_LIBS "${OPENCV_THIRD_PARTY}liblibopenjp2.a")
+    list(APPEND EXTRA_LIBS "${OPENCV_THIRD_PARTY}/libcpufeatures.a")
+    list(APPEND EXTRA_LIBS "${OPENCV_THIRD_PARTY}/libittnotify.a")
+    list(APPEND EXTRA_LIBS "${OPENCV_THIRD_PARTY}/liblibopenjp2.a")
     
     if(${ANDROID_ABI} STREQUAL "x86")
         list(APPEND EXTRA_LIBS "${OPENCV_THIRD_PARTY}/libippiw.a")

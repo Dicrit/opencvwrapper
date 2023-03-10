@@ -11,7 +11,7 @@ add_library(
 target_include_directories(
         opencvwrapperlib_jni
         PRIVATE
-        "${CMAKE_CURRENT_SOURCE_DIR}/.."
+        "${OPENCVWPAPPER_INCLUDE_DIR}"
 )
 
 target_link_libraries(

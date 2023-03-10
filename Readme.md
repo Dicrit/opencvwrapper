@@ -14,8 +14,12 @@ The project is intended to build an iOS framework
 ## build opencv
 1. Clone the opencv repository into the 'opencv_build_scripts' directory (so the path of repository root is 'opencv_build_scripts/opencv')
 2. Switch to 4.x branch (this is the branch I've tested)
-3. Build it using one of the build_opencv_xxx build scripts depending on your OS (for now iOS builds are only from macOS, Android from Linux and from Windows) (probably you'll need to make them executable using chmod)
-4. The script will create a build directory and fill this directory with needed build variants.
+3. Prepare one of the build_opencv_xxx build scriptsd depending on your OS:
+    1. In case of Android build open the build script (for now available for Windows and Linux) and edit ANDROID_SDK_ROOT and ANDROID_NDK values to your SDK and NDK locations respectively
+    2. In case of iOS build most probably you'll need to make the script executable using chmod
+4. Run the build script
+
+The script will create a build directory and fill this directory with needed build variants.
 ## Build the ios framework
 1. Make the build_ios_framework.sh script executable using chmod.
 2. Run `./build_ios_framework.sh`

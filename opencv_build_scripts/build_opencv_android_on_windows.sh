@@ -5,8 +5,9 @@
 #this script still needs lots of improves.
 
 export ANDROID_SDK_ROOT=E:/Android/SDK
-export ANDROID_HOME=${ANDROID_SDK_ROOT}
 export ANDROID_NDK=E:/Android/SDK/ndk/23.1.7779620
+
+export ANDROID_HOME=${ANDROID_SDK_ROOT}
 export ANDROID_NDK_HOME=${ANDROID_NDK}
 
 rm -rf build

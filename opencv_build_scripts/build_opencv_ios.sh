@@ -2,9 +2,6 @@
 
 OPENCV_ROOT="../opencv"
 
-#rm -rf opencv
-#git clone https://github.com/Itseez/opencv.git
-
 rm -rf build
 
 mkdir build
